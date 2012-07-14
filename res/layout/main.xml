@@ -4,7 +4,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-  <org.jamienicol.resistors.Band
+  <org.jamienicol.resistors.DigitBand
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Hello World, ResistorsActivity"
+      />
+  <org.jamienicol.resistors.DigitBand
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Hello World, ResistorsActivity"
+      />
+  <org.jamienicol.resistors.DigitBand
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Hello World, ResistorsActivity"
