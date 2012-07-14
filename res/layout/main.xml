@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-  <org.jamienicol.resistors.DigitBand
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Hello World, ResistorsActivity"
-      />
-  <org.jamienicol.resistors.DigitBand
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Hello World, ResistorsActivity"
-      />
-  <org.jamienicol.resistors.DigitBand
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Hello World, ResistorsActivity"
-      />
-  <org.jamienicol.resistors.MultiplierBand
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Hello World, ResistorsActivity"
-      />
+<?xmlversion="1.0"encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+	<org.jamienicol.resistors.DigitBand
+		android:id="@+id/hundredsDigitBand"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	<org.jamienicol.resistors.DigitBand
+		android:id="@+id/tensDigitBand"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	<org.jamienicol.resistors.DigitBand
+		android:id="@+id/onesDigitBand"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	<org.jamienicol.resistors.MultiplierBand
+		android:id="@+id/multiplierBand"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
 </LinearLayout>
