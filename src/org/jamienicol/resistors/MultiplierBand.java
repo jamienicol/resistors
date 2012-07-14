@@ -33,4 +33,11 @@ public class MultiplierBand extends Band {
 
 		setColours (colour_ids);
 	}
+
+	@Override
+	public void processResistance (Resistance running_value) {
+		double ohms = running_value.getOhms ();
+		double power = Math.pow (10, getSelectedItemPosition () - 2);
+		running_value.setOhms (ohms * power);
+	}
 }

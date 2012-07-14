@@ -31,4 +31,10 @@ public class DigitBand extends Band {
 
 		setColours (colour_ids);
 	}
+
+	@Override
+	public void processResistance (Resistance running_value) {
+		double ohms = running_value.getOhms ();
+		running_value.setOhms (ohms * 10 + getSelectedItemPosition ());
+	}
 }
