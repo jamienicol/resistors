@@ -25,4 +25,9 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		/>
+	<TextView
+		android:id="@+id/resistanceView"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
 </LinearLayout>
