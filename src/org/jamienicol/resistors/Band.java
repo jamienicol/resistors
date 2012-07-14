@@ -6,7 +6,7 @@ import android.widget.Gallery;
 
 public class Band extends Gallery {
 
-    private int[] colours = {};
+	private Context context;
 
 	public Band (Context context) {
 		this (context, null);
@@ -18,6 +18,13 @@ public class Band extends Gallery {
 
 	public Band (Context context, AttributeSet attrs, int defStyle) {
 		super (context, attrs, defStyle);
+
+		this.context = context;
+
+		setColours (new int[] {});
+	}
+
+	protected void setColours (int[] colours) {
 		setAdapter (new BandAdapter (context, colours));
 	}
 }
