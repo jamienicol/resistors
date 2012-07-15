@@ -38,6 +38,10 @@ public abstract class Band extends Gallery {
 	public Band (Context context, AttributeSet attrs, int defStyle) {
 		super (context, attrs, defStyle);
 
+		/* prevent the colours to either side of the selected
+		 * colour looking wrong because of the background colour */
+		setUnselectedAlpha (1);
+
 		this.context = context;
 
 		setColours (new int[] {});
