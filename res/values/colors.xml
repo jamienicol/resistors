@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="resistor_background">#97AFFF</color>
 	<color name="band_none">@android:color/transparent</color>
 	<color name="band_black">#000000</color>
 	<color name="band_brown">#8B4513</color>
