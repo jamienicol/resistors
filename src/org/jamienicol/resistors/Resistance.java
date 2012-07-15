@@ -17,6 +17,8 @@
 
 package org.jamienicol.resistors;
 
+import java.text.DecimalFormat;
+
 public class Resistance {
 
 	private double ohms;
@@ -35,8 +37,50 @@ public class Resistance {
 
 	@Override
 	public String toString () {
-		/* round to 2 decimal places.
-		 * \u2126 is the Ohm symbol */
-		return String.format ("%.2f \u2126", ohms);
+
+		/* calculate the significand and base 10 exponent for
+		 * the value ohms. limit the exponent to multiples of 3 */
+		double significand = ohms;
+		int exponent = 0;
+		if (significand != 0) {
+
+			while (significand < 1.0) {
+				significand *= 1000;
+				exponent -= 3;
+			}
+
+			while (significand >= 1000.0) {
+				significand /= 1000;
+				exponent += 3;
+			}
+		}
+
+		/* select the SI prefix for the calculated exponent */
+		String prefix;
+		switch (exponent) {
+		case -3:
+			prefix = "m";
+			break;
+		case 0:
+			prefix = "";
+			break;
+		case 3:
+			prefix = "k";
+			break;
+		case 6:
+			prefix = "M";
+			break;
+		case 9:
+			prefix = "G";
+			break;
+		default:
+			prefix = "";
+			break;
+		}
+
+		/* round the significand to 2 decimal places at most,
+		 * then append the prefix and the ohm symbol */
+		DecimalFormat df = new DecimalFormat ("0.##");
+		return String.format ("%s %s\u2126", df.format (significand), prefix);
 	}
 }
