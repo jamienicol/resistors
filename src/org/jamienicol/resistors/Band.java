@@ -18,6 +18,7 @@
 package org.jamienicol.resistors;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -26,6 +27,7 @@ import android.widget.Gallery;
 public abstract class Band extends Gallery {
 
 	private Context context;
+	private int defaultColourIndex;
 
 	public Band (Context context) {
 		this (context, null);
@@ -43,6 +45,12 @@ public abstract class Band extends Gallery {
 		setUnselectedAlpha (1);
 
 		this.context = context;
+
+		TypedArray a = context.obtainStyledAttributes (attrs,
+		                                               R.styleable.Band,
+		                                               defStyle,
+		                                               0);
+		defaultColourIndex = a.getInt (R.styleable.Band_default_colour_index, 0);
 
 		setColours (new int[] {});
 	}
@@ -81,5 +89,6 @@ public abstract class Band extends Gallery {
 
 	protected void setColours (int[] colours) {
 		setAdapter (new BandAdapter (context, colours));
+		setSelection (defaultColourIndex);
 	}
 }
