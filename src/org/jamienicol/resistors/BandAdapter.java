@@ -34,7 +34,7 @@ public class BandAdapter extends BaseAdapter {
 		for (int i = 0; i < colours.length; i++) {
 			views[i] = new TextView (context);
 			views[i].setBackgroundColor (colours[i]);
-			views[i].setLayoutParams (new Gallery.LayoutParams (280, 50));
+			views[i].setLayoutParams (new Gallery.LayoutParams (280, Gallery.LayoutParams.FILL_PARENT));
 			System.out.println ("creating colour box view");
 		}
 	}
