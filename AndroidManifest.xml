@@ -6,6 +6,7 @@
     <application android:label="@string/app_name" >
         <activity android:name="ResistorsActivity"
                   android:label="@string/app_name"
+                  android:icon="@drawable/icon"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
