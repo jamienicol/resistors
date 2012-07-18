@@ -10,25 +10,25 @@
 	<org.jamienicol.resistors.DigitBand
 		android:id="@+id/hundredsDigitBand"
 		android:layout_width="fill_parent"
-		android:layout_height="48dp"
+		android:layout_height="54dp"
 		resistors:default_colour_index="1"
 		/>
 	<org.jamienicol.resistors.DigitBand
 		android:id="@+id/tensDigitBand"
 		android:layout_width="fill_parent"
-		android:layout_height="48dp"
+		android:layout_height="54dp"
 		resistors:default_colour_index="0"
 		/>
 	<org.jamienicol.resistors.DigitBand
 		android:id="@+id/onesDigitBand"
 		android:layout_width="fill_parent"
-		android:layout_height="48dp"
+		android:layout_height="54dp"
 		resistors:default_colour_index="0"
 		/>
 	<org.jamienicol.resistors.MultiplierBand
 		android:id="@+id/multiplierBand"
 		android:layout_width="fill_parent"
-		android:layout_height="48dp"
+		android:layout_height="54dp"
 		resistors:default_colour_index="3"
 		/>
 	<TextView
