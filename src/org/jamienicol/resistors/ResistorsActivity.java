@@ -31,6 +31,7 @@ public class ResistorsActivity extends Activity
 	private Band tensDigitBand;
 	private Band onesDigitBand;
 	private Band multiplierBand;
+	private Band toleranceBand;
 
 	private TextView resistanceView;
 
@@ -45,6 +46,7 @@ public class ResistorsActivity extends Activity
 		tensDigitBand = (Band)findViewById (R.id.tensDigitBand);
 		onesDigitBand = (Band)findViewById (R.id.onesDigitBand);
 		multiplierBand = (Band)findViewById (R.id.multiplierBand);
+		toleranceBand = (Band)findViewById (R.id.toleranceBand);
 		resistanceView = (TextView)findViewById (R.id.resistanceView);
 
 		OnItemSelectedListener listener = new OnItemSelectedListener () {
@@ -60,6 +62,7 @@ public class ResistorsActivity extends Activity
 		tensDigitBand.setOnItemSelectedListener (listener);
 		onesDigitBand.setOnItemSelectedListener (listener);
 		multiplierBand.setOnItemSelectedListener (listener);
+		toleranceBand.setOnItemSelectedListener (listener);
 	}
 
 	private void updateResistance () {
@@ -68,6 +71,7 @@ public class ResistorsActivity extends Activity
 		tensDigitBand.processResistance (r);
 		onesDigitBand.processResistance (r);
 		multiplierBand.processResistance (r);
+		toleranceBand.processResistance (r);
 
 		resistanceView.setText (r.toString ());
 	}

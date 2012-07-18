@@ -31,6 +31,12 @@
 		android:layout_height="54dp"
 		resistors:default_colour_index="3"
 		/>
+	<org.jamienicol.resistors.ToleranceBand
+		android:id="@+id/toleranceBand"
+		android:layout_width="fill_parent"
+		android:layout_height="54dp"
+		resistors:default_colour_index="3"
+		/>
 	<TextView
 		android:id="@+id/resistanceView"
 		android:layout_width="fill_parent"

@@ -22,9 +22,11 @@ import java.text.DecimalFormat;
 public class Resistance {
 
 	private double ohms;
+	private double tolerance;
 
 	public Resistance () {
 		ohms = 0;
+		tolerance = 0;
 	}
 
 	public double getOhms () {
@@ -33,6 +35,14 @@ public class Resistance {
 
 	public void setOhms (double ohms) {
 		this.ohms = ohms;
+	}
+
+	public double getTolerance () {
+		return tolerance;
+	}
+
+	public void setTolerance (double tolerance) {
+		this.tolerance = tolerance;
 	}
 
 	@Override
@@ -79,8 +89,13 @@ public class Resistance {
 		}
 
 		/* round the significand to 2 decimal places at most,
-		 * then append the prefix and the ohm symbol */
-		DecimalFormat df = new DecimalFormat ("0.##");
-		return String.format ("%s %s\u2126", df.format (significand), prefix);
+		 * append the prefix and the ohm symbol,
+		 * then append the tolerance as a plus or minus percentage */
+		DecimalFormat significandFormat = new DecimalFormat ("0.##");
+		DecimalFormat toleranceFormat = new DecimalFormat ("0.##");
+		return String.format ("%s %s\u2126 \u00B1%s%%",
+		                      significandFormat.format (significand),
+		                      prefix,
+		                      toleranceFormat.format (tolerance));
 	}
 }
