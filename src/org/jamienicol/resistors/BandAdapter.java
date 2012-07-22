@@ -18,39 +18,42 @@
 package org.jamienicol.resistors;
 
 import android.content.Context;
+import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Gallery;
 import android.widget.TextView;
 
-public class BandAdapter extends BaseAdapter {
+public class BandAdapter extends PagerAdapter {
 
-	private TextView[] views;
+	private int[] colours;
 
-	public BandAdapter (Context context, int colours[]) {
+	public BandAdapter (int colours[]) {
 
-		views = new TextView[colours.length];
-		for (int i = 0; i < colours.length; i++) {
-			views[i] = new TextView (context);
-			views[i].setBackgroundColor (colours[i]);
-			views[i].setLayoutParams (new Gallery.LayoutParams (Gallery.LayoutParams.FILL_PARENT, Gallery.LayoutParams.FILL_PARENT));
-		}
+		this.colours = colours;
 	}
 
+	@Override
+	public Object instantiateItem (ViewGroup container, int position) {
+		TextView view = new TextView (container.getContext ());
+		view.setBackgroundColor (colours[position]);
+		view.setLayoutParams (new ViewGroup.LayoutParams (ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+		container.addView (view);
+
+		return view;
+	}
+
+	@Override
+	public void destroyItem (ViewGroup container, int position, Object object) {
+		container.removeView ((View)object);
+	}
+
+	@Override
 	public int getCount () {
-		return views.length;
+		return colours.length;
 	}
 
-	public Object getItem (int position) {
-		return position;
-	}
-
-	public long getItemId (int position) {
-		return position;
-	}
-
-	public View getView (int position, View convertView, ViewGroup parent) {
-		return views[position];
+	@Override
+	public boolean isViewFromObject (View view, Object object) {
+		return view == object;
 	}
 }

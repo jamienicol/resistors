@@ -54,7 +54,7 @@ public class MultiplierBand extends Band {
 	@Override
 	public void processResistance (Resistance running_value) {
 		double ohms = running_value.getOhms ();
-		double power = Math.pow (10, getSelectedItemPosition () - 2);
+		double power = Math.pow (10, getCurrentItem () - 2);
 		running_value.setOhms (ohms * power);
 	}
 }

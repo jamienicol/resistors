@@ -52,6 +52,6 @@ public class DigitBand extends Band {
 	@Override
 	public void processResistance (Resistance running_value) {
 		double ohms = running_value.getOhms ();
-		running_value.setOhms (ohms * 10 + getSelectedItemPosition ());
+		running_value.setOhms (ohms * 10 + getCurrentItem ());
 	}
 }

@@ -19,9 +19,7 @@ package org.jamienicol.resistors;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
 import android.widget.TextView;
 
 public class ResistorsActivity extends Activity
@@ -49,20 +47,17 @@ public class ResistorsActivity extends Activity
 		toleranceBand = (Band)findViewById (R.id.toleranceBand);
 		resistanceView = (TextView)findViewById (R.id.resistanceView);
 
-		OnItemSelectedListener listener = new OnItemSelectedListener () {
-			public void onItemSelected (AdapterView parent, View view, int position, long id) {
+		SimpleOnPageChangeListener listener = new SimpleOnPageChangeListener () {
+			public void onPageSelected (int position) {
 				updateResistance ();
-			}
-
-			public void onNothingSelected (AdapterView parent) {
 			}
 		};
 
-		hundredsDigitBand.setOnItemSelectedListener (listener);
-		tensDigitBand.setOnItemSelectedListener (listener);
-		onesDigitBand.setOnItemSelectedListener (listener);
-		multiplierBand.setOnItemSelectedListener (listener);
-		toleranceBand.setOnItemSelectedListener (listener);
+		hundredsDigitBand.setOnPageChangeListener (listener);
+		tensDigitBand.setOnPageChangeListener (listener);
+		onesDigitBand.setOnPageChangeListener (listener);
+		multiplierBand.setOnPageChangeListener (listener);
+		toleranceBand.setOnPageChangeListener (listener);
 	}
 
 	private void updateResistance () {

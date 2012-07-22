@@ -60,7 +60,7 @@ public class ToleranceBand extends Band {
 
 	@Override
 	public void processResistance (Resistance running_value) {
-		double tolerance = tolerances[getSelectedItemPosition ()];
+		double tolerance = tolerances[getCurrentItem ()];
 		running_value.setTolerance (tolerance);
 	}
 }

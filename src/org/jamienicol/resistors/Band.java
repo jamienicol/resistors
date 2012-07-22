@@ -19,14 +19,11 @@ package org.jamienicol.resistors;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.Gallery;
 
-public abstract class Band extends Gallery {
+public abstract class Band extends ViewPager {
 
-	private Context context;
 	private int defaultColourIndex;
 
 	public Band (Context context) {
@@ -38,13 +35,7 @@ public abstract class Band extends Gallery {
 	}
 
 	public Band (Context context, AttributeSet attrs, int defStyle) {
-		super (context, attrs, defStyle);
-
-		/* prevent the colours to either side of the selected
-		 * colour looking wrong because of the background colour */
-		setUnselectedAlpha (1);
-
-		this.context = context;
+		super (context, attrs);
 
 		TypedArray a = context.obtainStyledAttributes (attrs,
 		                                               R.styleable.Band,
@@ -53,29 +44,6 @@ public abstract class Band extends Gallery {
 		defaultColourIndex = a.getInt (R.styleable.Band_default_colour_index, 0);
 
 		setColours (new int[] {});
-	}
-
-	/* Limit the length of a fling gesture to 1 colour.
-	 * Otherwise it's basically impossible to select a specific colour. */
-	@Override
-	public boolean onFling (MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-
-		/* fake a left or right keypress depending on the direction
-		 * of the fling. I think use movePrevious () and moveNext ()
-		 * would be cleaner than faking keypresses, but they are
-		 * package scope. they're short functions (barely longer than
-		 * this comment) so maybe they should be reproduced here.
-		 * something just feels wrong faking keypresses,
-		 * but it will do for now. */
-		if (e1.getX () < e2.getX ()) {
-			onKeyDown (KeyEvent.KEYCODE_DPAD_LEFT, null);
-			return true;
-		} else if (e1.getX () > e2.getX ()) {
-			onKeyDown (KeyEvent.KEYCODE_DPAD_RIGHT, null);
-			return true;
-		}
-
-		return false;
 	}
 
 	/* This function takes the running value of resistance for all previous
@@ -88,7 +56,7 @@ public abstract class Band extends Gallery {
 	public abstract void processResistance (Resistance running_value);
 
 	protected void setColours (int[] colours) {
-		setAdapter (new BandAdapter (context, colours));
-		setSelection (defaultColourIndex);
+		setAdapter (new BandAdapter (colours));
+		setCurrentItem (defaultColourIndex, false);
 	}
 }
