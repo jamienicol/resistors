@@ -2,37 +2,33 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:resistors="http://schemas.android.com/apk/res/org.jamienicol.resistors"
+	android:id="@+id/mainLayout"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:background="@color/resistor_background"
 	>
 	<org.jamienicol.resistors.DigitBand
-		android:id="@+id/hundredsDigitBand"
 		android:layout_width="fill_parent"
 		android:layout_height="54dp"
 		resistors:default_colour_index="1"
 		/>
 	<org.jamienicol.resistors.DigitBand
-		android:id="@+id/tensDigitBand"
 		android:layout_width="fill_parent"
 		android:layout_height="54dp"
 		resistors:default_colour_index="0"
 		/>
 	<org.jamienicol.resistors.DigitBand
-		android:id="@+id/onesDigitBand"
 		android:layout_width="fill_parent"
 		android:layout_height="54dp"
 		resistors:default_colour_index="0"
 		/>
 	<org.jamienicol.resistors.MultiplierBand
-		android:id="@+id/multiplierBand"
 		android:layout_width="fill_parent"
 		android:layout_height="54dp"
 		resistors:default_colour_index="3"
 		/>
 	<org.jamienicol.resistors.ToleranceBand
-		android:id="@+id/toleranceBand"
 		android:layout_width="fill_parent"
 		android:layout_height="54dp"
 		resistors:default_colour_index="6"

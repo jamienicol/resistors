@@ -20,17 +20,15 @@ package org.jamienicol.resistors;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResistorsActivity extends Activity
 {
-
-	private Band hundredsDigitBand;
-	private Band tensDigitBand;
-	private Band onesDigitBand;
-	private Band multiplierBand;
-	private Band toleranceBand;
-
+	private List<Band> bands;
 	private TextView resistanceView;
 
 	/** Called when the activity is first created. */
@@ -40,12 +38,7 @@ public class ResistorsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		hundredsDigitBand = (Band)findViewById (R.id.hundredsDigitBand);
-		tensDigitBand = (Band)findViewById (R.id.tensDigitBand);
-		onesDigitBand = (Band)findViewById (R.id.onesDigitBand);
-		multiplierBand = (Band)findViewById (R.id.multiplierBand);
-		toleranceBand = (Band)findViewById (R.id.toleranceBand);
-		resistanceView = (TextView)findViewById (R.id.resistanceView);
+		bands = new ArrayList<Band> ();
 
 		SimpleOnPageChangeListener listener = new SimpleOnPageChangeListener () {
 			public void onPageSelected (int position) {
@@ -53,23 +46,27 @@ public class ResistorsActivity extends Activity
 			}
 		};
 
-		hundredsDigitBand.setOnPageChangeListener (listener);
-		tensDigitBand.setOnPageChangeListener (listener);
-		onesDigitBand.setOnPageChangeListener (listener);
-		multiplierBand.setOnPageChangeListener (listener);
-		toleranceBand.setOnPageChangeListener (listener);
+		/* find all the bands in the layout */
+		ViewGroup mainLayout = (ViewGroup)findViewById (R.id.mainLayout);
+		for (int i = 0; i < mainLayout.getChildCount (); i++) {
+			View view = mainLayout.getChildAt (i);
+			if (view instanceof Band) {
+				Band band = (Band)view;
+				bands.add (band);
+				band.setOnPageChangeListener (listener);
+			}
+		}
+
+		resistanceView = (TextView)findViewById (R.id.resistanceView);
 
 		updateResistance ();
 	}
 
 	private void updateResistance () {
 		final Resistance r = new Resistance ();
-		hundredsDigitBand.processResistance (r);
-		tensDigitBand.processResistance (r);
-		onesDigitBand.processResistance (r);
-		multiplierBand.processResistance (r);
-		toleranceBand.processResistance (r);
-
+		for (Band band : bands) {
+			band.processResistance (r);
+		}
 		resistanceView.setText (r.toString ());
 	}
 }
