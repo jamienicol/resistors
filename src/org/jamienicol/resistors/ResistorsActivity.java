@@ -58,6 +58,8 @@ public class ResistorsActivity extends Activity
 		onesDigitBand.setOnPageChangeListener (listener);
 		multiplierBand.setOnPageChangeListener (listener);
 		toleranceBand.setOnPageChangeListener (listener);
+
+		updateResistance ();
 	}
 
 	private void updateResistance () {
