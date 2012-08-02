@@ -19,16 +19,11 @@ package org.jamienicol.resistors;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResistorsActivity extends Activity
 {
-	private List<Band> bands;
+	private Resistor resistor;
 	private TextView resistanceView;
 
 	/** Called when the activity is first created. */
@@ -38,35 +33,9 @@ public class ResistorsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		bands = new ArrayList<Band> ();
-
-		SimpleOnPageChangeListener listener = new SimpleOnPageChangeListener () {
-			public void onPageSelected (int position) {
-				updateResistance ();
-			}
-		};
-
-		/* find all the bands in the layout */
-		ViewGroup mainLayout = (ViewGroup)findViewById (R.id.mainLayout);
-		for (int i = 0; i < mainLayout.getChildCount (); i++) {
-			View view = mainLayout.getChildAt (i);
-			if (view instanceof Band) {
-				Band band = (Band)view;
-				bands.add (band);
-				band.setOnPageChangeListener (listener);
-			}
-		}
-
+		resistor = (Resistor)findViewById (R.id.resistor);
 		resistanceView = (TextView)findViewById (R.id.resistanceView);
 
-		updateResistance ();
-	}
-
-	private void updateResistance () {
-		final Resistance r = new Resistance ();
-		for (Band band : bands) {
-			band.processResistance (r);
-		}
-		resistanceView.setText (r.toString ());
+		resistanceView.setText (resistor.getResistance ().toString ());
 	}
 }
