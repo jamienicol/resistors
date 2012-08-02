@@ -42,5 +42,13 @@ public class ResistorsActivity extends Activity
 		mainLayout.setBackgroundDrawable (resistor.getBackground ());
 		resistanceView.setBackgroundDrawable (resistor.getBackground ());
 		resistanceView.setText (resistor.getResistance ().toString ());
+
+		/* update text view whenever the resistance changes */
+		Resistor.OnResistanceChangeListener listener = new Resistor.OnResistanceChangeListener () {
+			public void onResistanceChange (Resistance resistance) {
+				resistanceView.setText (resistance.toString ());
+			}
+		};
+		resistor.setOnResistanceChangeListener (listener);
 	}
 }

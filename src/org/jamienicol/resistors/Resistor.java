@@ -27,8 +27,13 @@ import java.util.List;
 
 public class Resistor extends LinearLayout {
 
+	public interface OnResistanceChangeListener {
+		public abstract void onResistanceChange (Resistance resistance);
+	}
+
 	private List<Band> bands;
 	private Resistance resistance;
+	private OnResistanceChangeListener onResistanceChangeListener;
 
 	public Resistor (Context context) {
 		this (context, null);
@@ -43,6 +48,7 @@ public class Resistor extends LinearLayout {
 
 		bands = new ArrayList<Band> ();
 		resistance = new Resistance ();
+		onResistanceChangeListener = null;
 	}
 
 	@Override
@@ -52,6 +58,9 @@ public class Resistor extends LinearLayout {
 		SimpleOnPageChangeListener listener = new SimpleOnPageChangeListener () {
 			public void onPageSelected (int position) {
 				updateResistance ();
+				if (onResistanceChangeListener != null) {
+					onResistanceChangeListener.onResistanceChange (resistance);
+				}
 			}
 		};
 
@@ -82,5 +91,9 @@ public class Resistor extends LinearLayout {
 
 	public Resistance getResistance () {
 		return resistance;
+	}
+
+	public void setOnResistanceChangeListener (OnResistanceChangeListener listener) {
+		onResistanceChangeListener = listener;
 	}
 }
