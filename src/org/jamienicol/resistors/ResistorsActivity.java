@@ -19,10 +19,12 @@ package org.jamienicol.resistors;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class ResistorsActivity extends Activity
 {
+	private View mainLayout;
 	private Resistor resistor;
 	private TextView resistanceView;
 
@@ -33,9 +35,12 @@ public class ResistorsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		mainLayout = findViewById (R.id.mainLayout);
 		resistor = (Resistor)findViewById (R.id.resistor);
 		resistanceView = (TextView)findViewById (R.id.resistanceView);
 
+		mainLayout.setBackgroundDrawable (resistor.getBackground ());
+		resistanceView.setBackgroundDrawable (resistor.getBackground ());
 		resistanceView.setText (resistor.getResistance ().toString ());
 	}
 }
